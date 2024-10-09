@@ -43,10 +43,10 @@ Figure 2 Final electrical setup of COSI Measure inside the casing (back view).
 Figure 3 General wiring diagram of the electronic subsystem.
 
 
-[bill of materials]{BOM} page.
+* [.]{BOM} page.
 
 
-[Building instructions](COSI_Electronics-Assembly_instruction.md)
+* [.](COSI_Electronics-Assembly_instruction.md){step}
 
 
 ## Comments
