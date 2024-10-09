@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Untitled project</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../static/Logo/favicon.ico" />
+<link rel="icon" type="image/png" href="../static/Logo/favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="../static/Logo/favicon-16x16.png" sizes="16x16" />
+
+    <link href="../static/base-style.css" rel="stylesheet">
+    <link href="../static/site-style.css" rel="stylesheet">
+                    
+        <script type="text/javascript" src="../static/search.js" defer=""></script>
+    </head>
+<body>
+<header class="site-header">
+    <div class="wrapper header-wrapper" >
+        <div class=header-text>
+   
+    <h1 class="site-title">Untitled project</h1>
+</div>
+            </div>
+</header>
+<div class="page-content">
+            <div>
+            <nav class="sidebar">
+                <a href="#" class="menu-icon">
+                <svg viewBox="0 0 18 15">
+                    <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                    <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                    <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                </svg>
+                </a>
+                <ul class="nav-list">
+                <li>
+    <a class="navhome" href="../">
+        Untitled project
+    </a>
+</li>
+<li id="nav-search" :class="focused && searchTerm.length > 0 ? 'search-result-popout' : 'search'" v-scope v-on:vue:mounted="mounted('../')">
+  <input
+    type="text"
+    placeholder="Search..."
+    v-on:input="search($event.target.value)"
+    v-on:keypress="handleKeyPress"
+    v-on:keyup.esc="$event.target.blur()"
+    v-on:focus="handleFocus"
+    v-on:blur="handleBlur"
+    :value="searchTerm" />
+    <div class="search-results" v-if="focused && searchTerm.length > 0">
+        <div v-if="searchResults.length > 0">Results:</div>
+        <div v-if="searchResults.length === 0">No results.</div>
+        <template v-for="(result, index) in searchResults">
+            <li>
+                <a class="search-result" :href="`../${result.path}.html`">
+               <span v-for="crumb in result.breadCrumbs.slice(0, -1)">
+                ${crumb + ' > '}
+                </span>
+               ${result.title || result.breadCrumbs[result.breadCrumbs.length - 1]}
+                <p>
+                    <span v-for="node in result.highlightChars" :class="node.mark ? 'highlight' : ''" >${node.chars}</span>
+                </p>
+                </a>
+            </li>
+        </template>
+    </div>
+</li>
+<li class="active">
+    <a class="active" href="../GitBuilding/index.html">
+        COSI-Electronics
+    </a>
+        <ul class="sub-nav-list">
+                <li>
+            <a class="not-active" href="../GitBuilding/index_BOM.html">
+                Bill of Materials
+            </a>
+        </li>
+                <li>
+            <a class="active" href="../GitBuilding/COSI_Electronics-Assembly_instruction.html">
+                Power management board assembly 
+            </a>
+        </li>
+            </ul>
+    </li>
+
+                </ul>
+            </nav>
+        </div>
+        <div class="wrapper">
+    <p><multimeter 
+screwdriver 
+cable stripper 
+soldering equipment 
+hot-air fan
+Flasher></p>
+<div class="pagebom"></div>
+<h1 id="power-management-board-assembly">Power management board assembly</h1>
+<p>The power management board interfaces a 220V AC input with all other DC powered components (Figure 3). An AC/DC module is used to generate a 12V DC power supply for the limit switches and the BeBoPr++ which powers the BBB with 5V. The CPLD is connected with two buttons and has two functions:
+1. Pressing button 1 (power on/off) switches on the 12V DC power for the limit switches and the BeBoPr++, which switches on the BBB.
+2. Pressing button 2 (motor on/off, after power on) powers on the 36V DC power supply of the stepper motors.</p>
+<p><img alt="" src="images/Powermanagementboardblockdiagram.png" title="" /></p>
+<p>Block diagram of the power management board.</p>
+<p>A general description of the functionality of the power management board is shown in Figure 4.</p>
+<h2 class="page-step" id="make-the-pcb-of-the-power-management-board">Step 1: Make the PCB of the power management board</h2>
+<p>See Gerber files</p>
+<h2 class="page-step" id="assemble-all-electronic-parts-according-to-the-schematic-as-seen-in-figure-5-6">Step 2: Assemble all electronic parts according to the schematic as seen in Figure 5-6</h2>
+<p>Please note: There is a conversion error in the Gerber file and the holes for the relay are too small. You can use a file or driller to increase the hole size so that the relay fits.</p>
+<h2 class="page-step" id="program-the-cpld-using-a-jtag-programming-cable">Step 3: Program the CPLD using a JTAG programming cable.</h2>
+<p>We used the Xilinx ISE 14.7 software (downloadable from the Xilinx website) → Labtools → Impact. After powering on the CPLD (e.g. over the power management board) and connecting the JTAG programming cable, the software should be able to detect both the programming cable used and the CPLD. Then it can be programmed with the code found in the COSI_pwr_CPLD folder.</p>
+<h2 class="page-step" id="test-the-functionality-of-the-power-management-board-and-the-cpld">Step 4: Test the functionality of the power management board and the CPLD.</h2>
+<p>Plug in the CPLD to the power management board and connect the board from the power socket to 230V AC (Figure 5). In standby mode a single LED should be powered on the CPLD (Figure 5, at the top right on the CPLD). In standby mode no power (12V DC or 230V AC at the motor output) should be turned on. After shorting/turning on the power on/off button (Figure 5), the 12V DC power should be turned on and the second LED on the CPLD lights on. Verify that by measuring the 12V DC power output and 0V AC power output at the motor power supply connection (Figure 5). Now shorten/turn on the motor power button (Figure 5). You should hear the relay clicking, see the third LED on the CPLD lighting on and measure 230V AC at the motor power output.</p>
+<p><img alt="" src="images/Powermanagementboardtopview.tif" title="" /></p>
+<p>Figure 5 Photograph (top) of the assembled power management board.</p>
+<p><img alt="" src="images/Powermanagementboardbottomview.tif" title="" /></p>
+<p>Figure 6 Photograph (bottom) of the assembled power management board. On the left side the 12V DC output is displayed and on the right side the 230V AC input/output connections. Please note that due to some error in the gerber file creation using KiCAD the holes were too small for the relay pins. In order for the part to fit the holes have to be made bigger using e.g. a file. The two yellow/gree isolated cables are connecting the relay with the MOSFET switch.</p>
+<h1 id="2-connect-the-bebobr-with-the-bbb-and-the-j5-bob">2.    Connect the BeBoBr++ with the BBB and the J5-Bob</h1>
+<h2 class="page-step" id="connect-the-bbb-to-the-bebopr">Step 5: Connect the BBB to the BeBoPr++.</h2>
+<p>Important: The BBB needs to be connected the right way otherwise you might damage the BBB. The side of the BBB with the micro HDMI, USB-Port and SD-card should be located over the pins (6x3) that are used for connecting the limit switches (Figure 7).</p>
+<h2 class="page-step" id="connect-the-j5-bob">Step 6: Connect the J5-Bob</h2>
+<p>(we use the source-enable option, R1, Q2 and short to SRCE needed: https://github.com/modmaker/J5-BOB) to the BeBoPr++ (Figure 7). The connections for the motor axes, the limit switches, the emergency switch, the 12V power supply are displayed in Figure 7.</p>
+<p><img alt="" src="images/AssembledBeBePrincasing.png" title="" />
+Figure 7 Photograph of the assembled BeBePr++ inside the casing. Please note that the USB cable and the HDMI cable were removed for the photo in order to better visualize the limit switch cables.</p>
+<h1 id="attach-electrical-components-to-the-casing-baseplate">Attach electrical components to the casing baseplate</h1>
+<h2 class="page-step" id="attach-the-distance-holders-at-the-position-of-the-power-management-board-4x-holes-and-the-bebopr-4x-holes">Step 7: Attach the distance holders at the position of the power management board (4x holes) and the BeBoPr++ (4x holes)</h2>
+<p>as indicated in (Figure 8). The distance holders should point inwards so that the BeBoPr++ and the power management board can be mounted on top.</p>
+<p><img alt="" src="images/AssembledBeBoPr.png" title="" /></p>
+<p>Figure 8 Photograph of the assembled BeBoPr++ (backside of the casing) indicating the position of the distance holders and the +x, -x, +y, -y, +z, -z pin positions for the limit switch signals.</p>
+<h2 class="page-step" id="attach-the-bebopr-and-the-power-management-board-to-the-distance-holders-using-m3x6-screws">Step 8: Attach the BeBoPr++ and the power management board to the distance holders using M3x6 screws.</h2>
+<p>Make sure that the orientation of the boards is correct in order to not have any surprises later on with the wiring (check Figure 1 for reference).</p>
+<h2 class="page-step" id="set-the-pins-sw1-sw8-of-the-stepper-motor-drivers-to-the-desired-configuration">Step 9: Set the pins (SW1-SW8) of the stepper motor drivers to the desired configuration.</h2>
+<p>These pins adjust the current output and step/revolution. Our configuration (1600 pulse/rev → microstepping factor 8) is displayed in Figure 9.</p>
+<p><img alt="" src="images/Steppermotorspinsetting.jpg" title="" /></p>
+<p>Figure 9 Pin setting of the stepper motor drivers for 1600 pulse/rev leading to a microstepping factor of 8.</p>
+<h2 class="page-step" id="attach-the-drivers-using-m3x15-screws-and-the-power-supply-using-the-m4x10-screws-to-the-baseplate">Step 10: Attach the drivers using M3x15 screws and the power supply using the M4x10 screws to the baseplate.</h2>
+<p>Your assembled setup should look like in Figure 1.</p>
+<h2 class="page-step" id="you-can-measure-and-adjust-there-is-a-small-screw-the-dc-output-voltage-of-the-motor-power-supply">Step 11: You can measure and adjust (there is a small screw) the DC output voltage of the motor power supply.</h2>
+<p>We have used a DC voltage of 36V for our setup</p>
+<h1 id="wire-all-components-inside-the-casing">Wire all components inside the casing</h1>
+<p>In this step we will connect all components that are on the casing baseplate. The approximate cable lengths can be deduced from the following table:</p>
+<h2 class="page-step" id="in-order-to-keep-the-avoid-cable-chaos-we-used-mounting-bases-and-cable-straps">Step 12: In order to keep the avoid cable chaos we used mounting bases and cable straps.</h2>
+<p>Attached the mounting bases as indicated in Figure 2 (five white squares) to the casing baseplate.</p>
+<h2 class="page-step" id="attach-wire-end-ferrules-to-the-cable-pos-18-at-one-end-and-a-two-pole-connector-at-the-other-end">Step 13: Attach wire end ferrules to the cable Pos 18 at one end and a two-pole connector at the other end.</h2>
+<p>Connect the connector to the BeBoPr++ and the other end of the cable to the appropriate 12V DC connection on the power management board (Figure 5). Make sure to get the polarity right (check also Figure 3).</p>
+<h2 class="page-step" id="attach-wire-end-ferrules-at-one-end-of-the-cables-pos-15-17-and-connect-the-cables-to-the-stepper-motor-drivers">Step 14: Attach wire end ferrules at one end of the cables Pos 15-17 and connect the cables to the stepper motor drivers.</h2>
+<p>Connect the other end to the according axis and output of the BeBoPr++/J5-Bob as shown in Figure 7.</p>
+<h2 class="page-step" id="attached-wired-end-ferrules-to-the-cables-pos-11-at-both-ends-of-the-cable">Step 15: Attached wired end ferrules to the cables Pos 11 at both ends of the cable.</h2>
+<p>Connect the 230V AC motor supply output of the power management board with the 230V AC power input of the motor supply.</p>
+<h2 class="page-step" id="attach-wire-end-ferrules-at-both-ends-of-the-cables-pos--12-14">Step 16: Attach wire end ferrules at both ends of the cables Pos  12-14.</h2>
+<p>Connect the cables at one end with the 36V DC power output and at the other with the power input of the stepper motor drivers (see also Figure 3).</p>
+<h2 id="in-order-to-connect-the-limit-switch-signals-with-the-bebopr-the-pin-strip-wire-6x-needs-to-be-soldered-to-the-six-pin-strip-wires-3x-pos-10-table-1" pagestep="pagestep">In order to connect the limit switch signals with the BeBoPr++, the pin strip wire (6x) needs to be soldered to the six pin strip wires (3x) (Pos 10, Table 1).</h2>
+<p>The BeBoPr++ has three pin input connectors, but since we feed the BeBoPr++ via the power management board, we have a common ground, so eventually only the central pin is needed, which gives the inductive limit switch signal (high or 5V if no conductive surface is near the limit switch and ground if a conductive surface is close to the limit switch). You can clip the remaining two cables from the 3-wired pin strips and connect the central cable to one of the six cables from the 6-wired pin strip. After soldering you can use a shrinking tube to isolate the contact. Proceed until all cables from the 6-wired pin strip are connected to a cable with a 3-wired pin strip at the end (even though only one pin is effectively being used). At the end connect the 6-wired pin strip to the power management board. Make sure that you connect it to the 5V output not the 12V output (see also, Figure 3&amp;5). In the last step connect the three-pin connectors to the BeBoPr++.</p>
+<h1 id="assemble-the-casing-cover">Assemble the casing cover</h1>
+<p>In this step all sockets will be mounted to the casing cover as indicated in Figure 1 and Figure 10.</p>
+<p><img alt="" src="images/Socketlocationschematic.tif" title="" /></p>
+<p>Figure 10 Schematic of the socket location on the front cover of the casing.</p>
+<p>5.1.    Mount the Micro HDMI socket to the cover using two M3x6 screws.
+5.2.    Mount the power socket to the cover using two M3x6 screws.
+5.3.    Mount the USB socket to the cover.
+5.4.    Mount the RJ45 socket to the cover.
+5.5.    Connect a pin strip (2x) to the power on/off button and mount it to the cover (for wire lengths please see table 1).
+5.6.    Connect a pin strip (2x) to the motor on/off button and mount it to the cover (for wire length please see table 1).
+5.7.    Prepare the main power supply cable (for wire length please see table 1). At one end you can use wire end ferrules (using a crimping tool). At the other end blade receptacles. This improves the connectivity and durability of the contacts.
+5.8.    Solder the motor cables to the 6-pole sockets (for wire length please see table 1). These will be connected to the stepper motor drivers. Remember your pin-selection since that will be used later for the stepper motor connectors as well in order to properly connect the phases of your stepper motors. We have used the following configuration:</p>
+<table>
+<thead>
+<tr>
+<th>Pin</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pin 1</td>
+<td>B+</td>
+</tr>
+<tr>
+<td>Pin 2</td>
+<td>B-</td>
+</tr>
+<tr>
+<td>Pin 4</td>
+<td>A-</td>
+</tr>
+<tr>
+<td>Pin 5</td>
+<td>A+</td>
+</tr>
+</tbody>
+</table>
+<p>Table 2 Pin assignment of the 6-pole socket used for the stepper motor connectors.</p>
+<p>Be aware that the wire diameter used should be big enough for your max current (you can find many spreadsheets online to help you with the selection). We have used 0.75mm² cables for the stepper motors and limit switches. Don’t make the wires too short, otherwise you will have difficulties assembling all connections later on. At the other end of the wire you can optionally add wire end ferrules (using a crimping tool), which improves the connectivity and durability of the contacts.
+It is recommended to use shrinking tubes after the socket connectors have been soldered. In particular for the limit switches there is not a lot of space between the pins. The shrinking tubes help to isolate the contacts, improving robustness and longevity of the system. The connector assembly steps are displayed in Figure 11.</p>
+<table>
+<thead>
+<tr>
+<th><img alt="" src="images/Connectorviews.jpg" title="" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Figure 11 Photograph of different assembly steps of the connectors. A shrinking tube (red color) was added to improve isolation between connections.</td>
+</tr>
+</tbody>
+</table>
+<h2 class="page-step" id="solder-the-6-wired-pin-strip-cables-to-the-8-pole-socket-pins">Step 17: Solder the 6-wired pin strip cables to the 8-pole socket pins.</h2>
+<p>Solder an isolated cable to the two remaining pins of the socket. Both the 6-wired pin strip (limit switch signals) and the two cables (12V power supply) will be connected later on to the power management board. Remember your pin-configuration for the socket since you want to make sure that it matches your pin-configuration connector of the limit switches. We have used the following configuration:</p>
+<table>
+<thead>
+<tr>
+<th>Connector pin</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pin 1</td>
+<td>6-wired pin strip cable 5</td>
+</tr>
+<tr>
+<td>Pin 2</td>
+<td>12V (+)</td>
+</tr>
+<tr>
+<td>Pin 3</td>
+<td>6-wired pin strip cable 2</td>
+</tr>
+<tr>
+<td>Pin 4</td>
+<td>6-wired pin strip cable 6</td>
+</tr>
+<tr>
+<td>Pin 5</td>
+<td>6-wired pin strip cable 1</td>
+</tr>
+<tr>
+<td>Pin 6</td>
+<td>6-wired pin strip cable 4</td>
+</tr>
+<tr>
+<td>Pin 7</td>
+<td>6-wired pin strip cable 3</td>
+</tr>
+<tr>
+<td>Pin 8</td>
+<td>Ground (-)</td>
+</tr>
+</tbody>
+</table>
+<p>Table 3 Pin assignment of the 6-pole socket used for the limit switch connector.</p>
+<p>At the other end of the two cables for the 12V power supply of the limit switches you can optionally add wire end ferrules (using a crimping tool), which improves the connectivity and durability of the contacts.</p>
+<h2 class="page-step" id="solder-the-2-pole-pin-strip-with-wires-to-the-3-pole-emergency-button-connector">Step 18: Solder the 2-pole pin strip with wires to the 3-pole emergency button connector.</h2>
+<p>Remember your pin-configuration for the socket since you want to make sure that it matches your pin-configuration connector of the emergency switch. We have used the following configuration:</p>
+<table>
+<thead>
+<tr>
+<th>Connector</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pin 1</td>
+<td>2-wired pin strip cable</td>
+</tr>
+<tr>
+<td>Pin 3</td>
+<td>2-wired pin strip cable</td>
+</tr>
+</tbody>
+</table>
+<p>Table 4 - Pin assignment of the 3-pole socket used for the emergency switch connector.</p>
+<h2 class="page-step" id="connect-the-usb-cable-to-the-usb-socket">Step 19: Connect the USB cable to the USB socket.</h2>
+<h2 class="page-step" id="connect-the-rj45-cable-to-the-rj45-socket">Step 20: Connect the RJ45 cable to the RJ45 socket.</h2>
+<h1 id="connect-front-cover-socketsbuttons-to-baseplate-and-close-casing">Connect front cover sockets/buttons to baseplate and close casing</h1>
+<h2 class="page-step" id="connect-6-wired-pin-strip-of-the-limit-switch-connector-to-the-power-management-board">Step 21: Connect 6-wired pin strip of the limit switch connector to the power management board</h2>
+<p>(12V DC limit switch signals, Figure 5).</p>
+<h2 class="page-step" id="connect-power-cable-of-the-limit-switch-socket-to-the-12v-dc-output-on-the-power-management-board">Step 22: Connect power cable of the limit switch socket to the 12V DC output on the power management board</h2>
+<p>(Figure 5).</p>
+<h2 class="page-step" id="connect-the-2-wired-cable-from-the-power-onoff-button-to-the-power-onoff-connection-on-the-power-management-board">Step 23: Connect the 2-wired cable from the power on/off button to the power on/off connection on the power management board</h2>
+<p>(Figure 5).</p>
+<h2 class="page-step" id="connect-the-2-wired-cable-from-the-motor-onoff-button-to-the-motor-onoff-connection-on-the-power-management-board">Step 24: Connect the 2-wired cable from the motor on/off button to the motor on/off connection on the power management board</h2>
+<p>(Figure 5).</p>
+<h2 class="page-step" id="connect-the-three-stepper-motor-sockets-to-the-appropriate-stepper-motor-driver">Step 25: Connect the three stepper motor sockets to the appropriate stepper motor driver.</h2>
+<h2 class="page-step" id="connect-the-2-wired-cable-from-the-emergency-button-socket-to-the-bebopr">Step 26: Connect the 2-wired cable from the emergency button socket to the BeBoPr++</h2>
+<p>(Figure 7).</p>
+<h2 class="page-step" id="connect-the-cables-from-the-power-socket-with-the-power-management-board-ac-230v-power-input">Step 27: Connect the cables from the power socket with the power management board AC 230V power input</h2>
+<p>(Figure 5).</p>
+<h2 class="page-step" id="at-the-end-you-can-fix-the-cables-using-cable-straps-and-the-provided-mounting-bases">Step 28: At the end you can fix the cables using cable straps and the provided mounting bases.</h2>
+<p>Don’t fix the cable straps too tightly so that you have a bit of room to operate in case you ‘ll need to replace a cable and don’t want to cut the hole cable strap for that.</p>
+<h2 class="page-step" id="close-the-front-cover-by-using-the-m5-screws">Step 29: Close the front cover by using the M5 screws.</h2>
+<h1 id="perform-functional-test-of-current-setup">Perform functional test of current setup</h1>
+<p>After all components have been connected you can test the setup.</p>
+<h2 class="page-step" id="plug-in-the-power-cable-to-the-ac-230v-power-socket">Step 30: Plug in the power cable to the AC 230V power socket.</h2>
+<p>One LED should switch on on the CPLD on the power management board.                 </p>
+<h2 class="page-step" id="press-the-power-onoff-button">Step 31: Press the power on/off button.</h2>
+<p>A second LED should light on on the CPLD of the power management board. Also now the BeBoPr++ should be powered (green LED on) and shortly after the Beagle Bone Black should start booting (blue LEDs on).</p>
+<h2 class="page-step" id="at-the-emergency-switch-input-of-the-bebopr-a-red-led-should-be-on-indicating-that-the-emergency-switch-is-not-connected">Step 32: At the emergency switch input of the BeBoPr++ a red LED should be on indicating that the emergency switch is not connected.</h2>
+<p>If you shorten the two pins of the switch (e.g. at the emergency switch socket, the LED should turn off).</p>
+<h2 class="page-step" id="check-the-hdmi-output-of-the-bbb-it-should-have-booted-in-the-meanwhile-displaying-the-linux-interface">Step 33: Check the HDMI output of the BBB (it should have booted in the meanwhile) displaying the Linux interface.</h2>
+<h2 class="page-step" id="connect-a-keyboardmouse-before-booting-the-bbb-to-the-usb-port-and-check-if-its-working">Step 34: Connect a keyboard/mouse (before booting the BBB) to the USB port and check if its working.</h2>
+<h2 class="page-step" id="press-the-motor-onoff-button">Step 35: Press the motor on/off button.</h2>
+<p>A third light should light up on the CPLD, indicating that the power supply was switched on. In order to confirm that, check if a green LED is on at the power supply. Now the stepper motor drivers should be supplied with the 36V DC power and each driver should have a green LED on.</p>
+<h1 id="status-led-overview">Status LED overview</h1>
+<p>BeBoPr++/BBB
+→ for all status LEDs check the BeBoPr++ documentation
+→ If the emergency button is disconnected a red LED is power on at the emergency button connection
+→ If the limit switches detect a conductive surface, red status LEDs are powered on at the respective limit switches
+→ A green LED indicates power on for the BeBePr++
+→ A blue LED indicates power on of the BBB</p>
+<p>Power supply
+→ Green LED indicates power supply is on and DC power is supplied to the stepper motor drivers</p>
+<p>Motor drivers
+→ Green LED indicates power supply is on</p>
+<p>Power management board
+→ A single power on LED on the CPLD indicates the standby mode, when the power cable is connected, but the power on/off button has not been turned on yet.
+→ After turning on the power on/off button another LED (2nd one, next to the previous one) lights on. It indicates that the 12V DC power has been switched on. Now the BeBoPr++ should be powered on and the BBB.
+→ After pressing the motor on/off button another LED (3rd one, three powered on LEDs in total) lights on. It indicates that the 230V AC voltage is routed to the power supply, which generates 36V DC for the motors. The motors are power on now and the system is fully operational.</p>
+<!-- GitBuilding Nav -->
+<hr />
+<p><a href="index_BOM.html">Previous page</a></p>
+    </div>
+</div>
+<footer class="site-footer">
+    <div class="wrapper">
+        <a target="_blank" rel="noopener noreferrer" href="https://gitbuilding.io">
+    <img class="icon" src="../static/Logo/GitBuilding500x.png" alt="GitBuilding logo">
+    <span class="doc-info">Documentation powered by GitBuilding</span>
+</a>
+
+    </div>
+</footer></body>
+</html>

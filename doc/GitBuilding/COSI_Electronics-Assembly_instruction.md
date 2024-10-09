@@ -1,14 +1,11 @@
-[M4x10 screws]:Parts.yaml#M4x10PanSteel
-[No. 2 Phillips screwdriver]:Parts.yaml#Screwdriver_Philips_No2
 [Crimp tool]:Parts.yaml#Crimp_Tool
-
-<multimeter 
-screwdriver 
-cable stripper 
-soldering equipment 
-hot-air fan
-Flasher>
-
+[Cable stripper]:Parts.yaml#Cable_stripper
+[Multimeter]:Parts.yaml#Multimeter
+[Soldering station]:Parts.yaml#Soldering_station
+[Hot air gun]:Parts.yaml#Hot-air_gun
+[Firmware flasher]:Parts.yaml#Firmware_flasher
+[Crimp tool]:Parts.yaml#Crimp_Tool
+[No. 2 Phillips screwdriver]:Parts.yaml#Screwdriver_Philips_No2
 
 
 {{BOM}}
@@ -30,6 +27,7 @@ See Gerber files
 
 ## Assemble all electronic parts according to the schematic as seen in Figure 5-6 {pagestep}
 
+Use the [Soldering station].
 Please note: There is a conversion error in the Gerber file and the holes for the relay are too small. You can use a file or driller to increase the hole size so that the relay fits.
 
 ## Program the CPLD using a JTAG programming cable.  {pagestep}
@@ -103,6 +101,27 @@ We have used a DC voltage of 36V for our setup
 In this step we will connect all components that are on the casing baseplate. The approximate cable lengths can be deduced from the following table:
 
 
+| Pos	| Connection	| No. of cables	 | Wire length [mm]
+|-------------|-------------------|--------------------|-----------------------|
+1	|6-pole socket x-axis ↔ x-axis motor driver	|4	|180
+2	|6-pole socket y-axis ↔ y-axis motor driver	|4	|200
+3	|6-pole socket z-axis ↔ z-axis motor driver	|4	|260
+4	|8-pole socket ↔ pin strip mate with wires (6x)	|6	|(as purchased, see BoM file)
+5	|8-pole socket ↔ power supply cable	|2	|300
+6	|3-pole socket ↔ pin strip wire (2x)	|2	|300
+7	|Power on/off button ↔ pin strip wire (2x)	|2	|290
+8	|Motor on/off button ↔ pin strip wire (2x)	|2	|290
+9	|Power socket ↔ power management board	|3	|260
+10	|Pin strip wire (6x) ↔ pin strip wire (3x) (connecting power management board limit switch signals with the BeBoPr++)	|6	|470 (pin strip (3x)), 750 (overall)
+11	|Power management board 230V output ↔ power supply motor 230V input	|2	|370
+12	|Power supply motor 36V output ↔ motor driver input (x-axis)	|2	|380
+13	|Power supply 36V output ↔ motor driver input (y-axis)	|2	|250
+14	|Power supply 36V output ↔ motor driver input (z-axis)	|2	|260
+15	|BeBoPr++/J5-Bob (x-axis) ↔ motor driver (x-axis)	|3	|190
+16	|BeBoPr++/J5-Bob (y-axis) ↔ motor driver (y-axis)	|3	|330
+17	|BeBoPr++/J5-Bob (z-axis) ↔ motor driver (z-axis)	|3	|460
+18	|Power management board 12V ↔ BeBoPr++ 12V DC	|2	|650
+Table 1 Approximate cable length used for the COSI Measure casing.
 
 
 

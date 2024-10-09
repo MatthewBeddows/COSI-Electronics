@@ -16,6 +16,7 @@ M4x10PanSteel:
         McMasterCarr:
             PartNo: 90116A207
             Link: https://www.mcmaster.com/90116A207
+            
 Screwdriver_Philips_No2:
     Name: No. 2 Phillips screwdriver
     Description: >
@@ -23,8 +24,33 @@ Screwdriver_Philips_No2:
         form an M4 pan head screw
     Specs:
         Drive Size: No. 2
+        
+        
 Crimp_Tool:
     Name: Crimp tool
     Description: TBC
-    Specs:
-        Brand: TBC
+        
+Cable_stripper:
+    Name: Cable stripper
+    Description: TBC
+    
+Soldering_station:
+    Name: Soldering station
+    Description: TBC
+    
+Hot-air_gun:
+    Name: Hot-air gun
+    Description: TBC
+
+Firmware_flasher:
+    Name: Firmware flasher
+    Description: TBC
+        
+Multimeter:
+    Name: Multimeter
+    Description: Basic handheld multimeter with V, R and short circuit measurements
+    Suppliers:
+        RS:
+            PartNo: 123-1938
+            Link: https://uk.rs-online.com/web/p/multimeters/1231938?gb=s
+            
