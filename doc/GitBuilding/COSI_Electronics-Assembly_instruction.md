@@ -12,7 +12,9 @@
 
 # Power management board assembly 
 The power management board interfaces a 220V AC input with all other DC powered components (Figure 3). An AC/DC module is used to generate a 12V DC power supply for the limit switches and the BeBoPr++ which powers the BBB with 5V. The CPLD is connected with two buttons and has two functions:
+
 1. Pressing button 1 (power on/off) switches on the 12V DC power for the limit switches and the BeBoPr++, which switches on the BBB.
+
 2. Pressing button 2 (motor on/off, after power on) powers on the 36V DC power supply of the stepper motors.
 
 ![](images/Powermanagementboardblockdiagram.png)
@@ -21,9 +23,11 @@ Block diagram of the power management board.
 
 A general description of the functionality of the power management board is shown in Figure 4.
 
+
 ## Make the PCB of the power management board  {pagestep}
 
-See Gerber files
+Gerber files and KiCAD PCB design files are available on github
+
 
 ## Assemble all electronic parts according to the schematic as seen in Figure 5-6 {pagestep}
 
@@ -38,13 +42,14 @@ We used the Xilinx ISE 14.7 software (downloadable from the Xilinx website) → 
 
 Plug in the CPLD to the power management board and connect the board from the power socket to 230V AC (Figure 5). In standby mode a single LED should be powered on the CPLD (Figure 5, at the top right on the CPLD). In standby mode no power (12V DC or 230V AC at the motor output) should be turned on. After shorting/turning on the power on/off button (Figure 5), the 12V DC power should be turned on and the second LED on the CPLD lights on. Verify that by measuring the 12V DC power output and 0V AC power output at the motor power supply connection (Figure 5). Now shorten/turn on the motor power button (Figure 5). You should hear the relay clicking, see the third LED on the CPLD lighting on and measure 230V AC at the motor power output.
 
-
-![](images/Powermanagementboardtopview.tif)
+![](images/Picture4.png)
 
 Figure 5 Photograph (top) of the assembled power management board.
 
 
-![](images/Powermanagementboardbottomview.tif)
+![](images/Picture5.png)
+
+
 
 Figure 6 Photograph (bottom) of the assembled power management board. On the left side the 12V DC output is displayed and on the right side the 230V AC input/output connections. Please note that due to some error in the gerber file creation using KiCAD the holes were too small for the relay pins. In order for the part to fit the holes have to be made bigger using e.g. a file. The two yellow/gree isolated cables are connecting the relay with the MOSFET switch.
 

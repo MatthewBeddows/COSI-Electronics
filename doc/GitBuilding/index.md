@@ -45,8 +45,11 @@ Figure 3 General wiring diagram of the electronic subsystem.
 
 * [.]{BOM} page.
 
+* [.](Casing_Assembly.md){step}
 
 * [.](COSI_Electronics-Assembly_instruction.md){step}
+
+
 
 
 ## Comments
