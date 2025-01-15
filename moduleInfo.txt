@@ -1,0 +1,5 @@
+[Module Name] COSI-Electronics
+
+[Module Info] Electronics for the COSI system.
+
+[Requirements]
