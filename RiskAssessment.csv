@@ -1,0 +1,3 @@
+Risk Name,Risk Code,Risk Level,Risk Description,Risk Mitigation
+Electronic Device Malfunction,MRI-004,Critical,Electronic monitoring or life support equipment may malfunction or fail when exposed to strong MRI magnetic fields potentially causing patient harm or loss of critical monitoring data,Use only MRI-compatible electronic devices within 5-gauss line and maintain backup monitoring systems outside MRI suite
+RF Heating of Electronic Components,MRI-005,High,Radiofrequency energy from MRI scanner can cause heating of electronic circuits and metallic components in devices leading to burns or device failure,Conduct thermal testing of all electronic equipment and establish maximum exposure time limits with temperature monitoring protocols
